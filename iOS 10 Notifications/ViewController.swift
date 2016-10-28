@@ -27,6 +27,19 @@ class ViewController: UIViewController {
     @IBAction func setLocalNotifications(_ sender: Any) {
     }
 
+    func scheLocalNotifications(seconds: TimeInterval, completion: (_ Success: Bool) -> ()){
+        let notificationContent = UNMutableNotificationContent()
+        
+        notificationContent.title = "Test Notification"
+        notificationContent.subtitle = "This is the subtitle"
+        notificationContent.body = "iOS 10 Notification Centre is rich"
+        
+        let notificationStarter = UNTimeIntervalNotificationTrigger(timeInterval: seconds, repeats: false)
+        let request = UNNotificationRequest(identifier: "myNotif", content: notificationContent, trigger: notificationStarter)
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
