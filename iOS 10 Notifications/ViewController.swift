@@ -35,11 +35,26 @@ class ViewController: UIViewController {
     }
 
     func schLocalNotifications(seconds: TimeInterval, completion: (_ Success: Bool) -> ()){
+        
+        //For gif Image
+        let gifImage = "aaron"
+        guard let imageURL = Bundle.main.url(forResource: gifImage, withExtension: "gif") else {
+            //errored
+            completion(false)
+            return
+        }
+        
+        var attachImage:UNNotificationAttachment
+        attachImage = try! UNNotificationAttachment(identifier: "myNotif", url: imageURL, options: .none)
+        
+        
+        
         let notificationContent = UNMutableNotificationContent()
         
         notificationContent.title = "Test Notification"
         notificationContent.subtitle = "This is the subtitle"
         notificationContent.body = "iOS 10 Notification Centre is rich"
+        notificationContent.attachments = [attachImage]
         
         let notificationStarter = UNTimeIntervalNotificationTrigger(timeInterval: seconds, repeats: false)
         let request = UNNotificationRequest(identifier: "myNotif", content: notificationContent, trigger: notificationStarter)
