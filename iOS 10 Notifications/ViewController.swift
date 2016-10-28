@@ -25,9 +25,16 @@ class ViewController: UIViewController {
     }
     
     @IBAction func setLocalNotifications(_ sender: Any) {
+        schLocalNotifications(seconds: 3, completion: {succ in
+            if succ {
+                print("done")
+            } else {
+                print("failed")
+            }
+        })
     }
 
-    func scheLocalNotifications(seconds: TimeInterval, completion: (_ Success: Bool) -> ()){
+    func schLocalNotifications(seconds: TimeInterval, completion: (_ Success: Bool) -> ()){
         let notificationContent = UNMutableNotificationContent()
         
         notificationContent.title = "Test Notification"
