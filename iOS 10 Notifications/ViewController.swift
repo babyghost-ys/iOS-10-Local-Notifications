@@ -56,6 +56,9 @@ class ViewController: UIViewController {
         notificationContent.body = "iOS 10 Notification Centre is rich"
         notificationContent.attachments = [attachImage]
         
+        //changed Category - Using Custom Notification Centre
+        notificationContent.categoryIdentifier = "myNotificationCategory"
+        
         let notificationStarter = UNTimeIntervalNotificationTrigger(timeInterval: seconds, repeats: false)
         let request = UNNotificationRequest(identifier: "myNotif", content: notificationContent, trigger: notificationStarter)
         

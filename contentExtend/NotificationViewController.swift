@@ -21,7 +21,18 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
     }
     
     func didReceive(_ notification: UNNotification) {
-
+        guard let attachedImage = notification.request.content.attachments.first else {
+            return
+        }
+        
+        //Access Image since the notifications is operating outside Sandbox
+        if attachedImage.url.startAccessingSecurityScopedResource() {
+            let imageData = try? Data.init(contentsOf: attachedImage.url)
+            if let img = imageData {
+                imageView.image = UIImage(data: img)
+            }
+        }
     }
+    
 
 }
