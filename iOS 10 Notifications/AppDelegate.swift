@@ -45,7 +45,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func configureUserNotifications(){
-        let notificationCat = UNNotificationCategory(identifier: "myNotificationCategory", actions: [], intentIdentifiers: [], options: [])
+        
+        let actionOne = UNNotificationAction(identifier: "actionOne", title: "🙄 First Action", options: [])
+        let actionTwo = UNNotificationAction(identifier: "actionTwo", title: "🤔 Second Action", options: [])
+        
+        let notificationCat = UNNotificationCategory(identifier: "myNotificationCategory", actions: [actionOne,actionTwo], intentIdentifiers: [], options: [])
         UNUserNotificationCenter.current().setNotificationCategories([notificationCat])
     }
 }
@@ -56,6 +60,11 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler(.alert)
         
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print(response.actionIdentifier)
+        completionHandler()
     }
 }
 
