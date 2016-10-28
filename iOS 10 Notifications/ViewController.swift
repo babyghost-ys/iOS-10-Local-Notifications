@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         attachImage = try! UNNotificationAttachment(identifier: "myNotif", url: imageURL, options: .none)
         
         
-        
+        //Original Notification
         let notificationContent = UNMutableNotificationContent()
         
         notificationContent.title = "Test Notification"
